@@ -1,12 +1,61 @@
 <!DOCTYPE html>
-<html>
-<head>
-<title>WeatherHTML</title>
-</head>
-<body>
+<html ng-app="userLocal">
+    <head>
+        <title>WeatherHTML</title>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+        <script src="js/weather.js"></script>
+    </head>
+    
+    <body>
+        <div class="background"></div>
 
-<h1>Developed using HTML, CCS3, Javascript and AngularJS. Mobile Support will be addded.</h1>
-<p>Hello World</p>
+        <div ng-controller="GetForecast as weather">
+            <div class="side">
+                <p class="date">{{weather.today.date | date:'dd/MM/yyyy | HH:mm'}}</p>
+                <p class="temp">{{weather.today.temp + 'º'}}</p>
+                <p class="city">{{weather.today.city | uppercase}}</p>
+                <p class="country">{{weather.today.country}}</p>
+            </div>
+            
+            <div class="side">
+                <img class="logo" src="images/weather/{{weather.today.main + '.svg'}}"/><br/>
+                <div>
+                    <img class="wind" src="images/weather/wind.svg"> {{weather.today.wind_speed + ' km/h'}}
+                </div>
+            </div>
+            
+            <div class="breakLine"></div>
+            
+            <div class="container">
+                    <div class="side" ng-repeat="x in weather.pred">
+                        <div class="daysCard">
+                            <div class="daysHeader">
+                                <img src="images/weather/{{x.main + '.svg'}}"/>
+                            </div>
+                            <div class="daysDate">
+                                <p>{{x.date | date:'dd/MM/yyyy'}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="side" ng-show="false">
+                        <div class="side">
+                            Sunrise<p class="date">{{weather.today.sunset | date:'dd/MM/yyyy | HH:mm'}}</p><br/>
+                            <img class="sunrise" src="images/weather/sun.svg"/>
+                        </div>
 
-</body>
+                        <div class="side">
+                            Sunset<br/><p class="date">{{weather.today.sunrise | date:'dd/MM/yyyy | HH:mm'}}</p><br/>
+                            <img class="sunset" src="images/weather/night.svg"/>
+                        </div>
+                    </div>
+                <div class="footer">
+                    Diogo Rosa
+                </div>
+            </div>
+        </div>    
+
+    </body>
 </html>
