@@ -1,0 +1,28 @@
+<div>
+    <div class="fadeinQuick" ng-show="current.setInfo(location.pos.latitude, location.pos.longitude)">
+        <div class="side">
+            <p class="date">{{current.date | date:'dd/MM/yyyy | HH:mm'}}</p>
+            <div class="temp">
+                ≈{{current.info.main.temp | number: 1}}
+                <p class="celcius">ºC</p>
+                <p class="tempMinMax" ng-show="{{current.info.main.temp_min < current.info.main.temp_max}}">{{current.info.main.temp_min + 'º'}} | {{current.info.main.temp_max + 'º'}}</p>
+            </div>
+            <p class="city">{{current.info.name | uppercase}}</p>
+            <p class="country">{{current.info.sys.country}}</p>
+        </div>
+
+        <div class="side">
+            <img class="logo" ng-src="images/weather/{{current.dayNight + '-' + current.info.weather[0].main + '.svg' | lowercase}}"/><br/>
+            <div>
+                <img class="wind" ng-src="images/weather/wind.svg"> {{current.info.wind.speed + ' m/s'}} |
+                <img class="wind" ng-src="images/weather/humidity.png"> {{current.info.main.humidity + '%'}} |
+                <div class="side">
+                    <img class="wind" ng-src="images/weather/sunrise.svg"> {{current.info.sys.sunrise + '000' | date:'HH:mm'}}<br/>
+                    <img class="wind" ng-src="images/weather/sunset.svg"> {{current.info.sys.sunset + '000' | date:'HH:mm'}}
+                </div>
+            </div>
+        </div>
+
+        <div class="breakLine noMargin"></div>
+    </div>
+</div>

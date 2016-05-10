@@ -1,0 +1,11 @@
+<div ng-hide="location.pos.latitude > 0">
+        <div class="fadein5secs side">
+            <p class="welcome fadein5Secs">WELCOME</p>
+        </div>
+        <div class="fadein8Secs" ng-hide="location.error.length > 0">
+            <p class="welcomeSubTitle">Loading geolocation info...</p>
+        </div>
+        <div class="fadeinQuick error" ng-show="location.error.length > 0">
+            <p>{{location.error}}</p>
+        </div>
+</div>

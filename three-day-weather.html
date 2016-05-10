@@ -1,0 +1,53 @@
+<div class="container">
+    <div ng-show="forecast.setInfo(location.pos.latitude, location.pos.longitude)">
+        <div class="side" ng-repeat="x in forecast.weatherInfo">
+            <div ng-controller="flipCtrl">
+                <div class="card" ng-class="{'flipped':isFlipped}" ng-click="isFlipped=!isFlipped">
+                    <div class="dayCard front">
+                        <div class="dayCardTemp">
+                            <div class="side">
+                                {{x.temp | number: 1}}<p class="celcius">ºC</p><br/>
+                                <div class="side date center">
+                                    {{x.temp_min | number: 1}}<p class="celcius">ºC</p>-
+                                    {{x.temp_max | number: 1}}<p class="celcius">ºC</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <img class="dayCardLogoSize" ng-src="images/weather/{{'day-' + x.main + '.svg' | lowercase}}"/>
+
+                        <div class="footer center">
+                            {{x.date | date: longDate}}
+                        </div>
+                    </div> 
+
+                    <div class="dayCard back">
+                        <div class="dayCardTemp">
+                            <div class="side">
+                                {{x.temp | number: 1}}<p class="celcius">ºC</p><br/>
+                                <div class="side date center">
+                                    {{x.temp_min | number: 1}}<p class="celcius">ºC</p>-
+                                    {{x.temp_max | number: 1}}<p class="celcius">ºC</p>
+                                </div>                                            </div>
+                                <div class="breakLine white"></div>
+                        </div>
+
+                        <div ng-repeat="h in x.hours">
+                            <div class="side">
+                                <p class="backText noMargin">{{h.dt + '000' | date: 'HH:mm'}}</p>
+                                <img class="backIcon noMargin" ng-src="images/weather/{{'day-' + h.weather[0].main + '.svg' | lowercase}}"/>
+                            </div>
+                        </div>
+
+                        <div class="breakLine white"></div>
+
+                        {{x.date | date: longDate}}
+                    </div>
+                </div> 
+            </div>
+        </div>
+        <div class="footer">
+            Diogo Rosa <<a href="mailto:'diogopt.rosa@gmail.com'">diogopt.rosa@gmail.com></a>
+        </div>
+    </div>
+</div>

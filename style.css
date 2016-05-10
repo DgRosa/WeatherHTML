@@ -18,19 +18,37 @@
     src: url(fonts/Josefin_Sans/JosefinSans-Bold.ttf);
 }
 
+@font-face {
+    font-family: fontSemiBold;
+    src: url(fonts/Josefin_Sans/JosefinSans-SemiBold.ttf);
+}
+
 * Chrome, Safari, Opera */
 @-webkit-keyframes myfirst {
-    0% {left: 0px; top: 0px;}
-    33% {left: 25px; top: 0px;}
-    66% {left: 50px; top: 0px;}
-    100% {left: 0px; top: 0px;}
+    0% {left: -25px; top: 0px;}
+    25% {left: 0px; top: 13px;}
+    50% {left: 25px; top: 16px;}
+    75% {left: 0px; top: 13px;}
+    100% {left: -25px; top: 0px;}
 }
 
 @keyframes myfirst {
-    0% {left: 0px; top: 0px;}
-    33% {left: 25px; top: 0px;}
-    66% {left: 50px; top: 0px;}
-    100% {left: 0px; top: 0px;}
+    0% {left: -25px; top: 0px;}
+    25% {left: 0px; top: 13px;}
+    50% {left: 25px; top: 16px;}
+    75% {left: 0px; top: 13px;}
+    100% {left: -25px; top: 0px;}
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
 
 /* Chrome, Safari, Opera */
@@ -45,7 +63,21 @@
     to {left: 300px;}
 }
 
+@media only screen and (max-width: 500px) {
+    /* For mobile phones: */
+    .test{
+        margin: auto;
+        width: auto;
+        min-height: 100%;
+    }   
+}
+
+html {
+	height: 100%;
+}
+
 body{
+    height: 100%;
     font-family: fontRegular, serif;
     margin:0;
 	padding:0;
@@ -57,15 +89,48 @@ a{
     color: aliceblue;
 }
 
+.fadeinQuick{
+    -webkit-animation: fadein 3s; /* Chrome, Safari, Opera */
+    animation: fadein 3s;
+}
+
+.fadein5Secs{
+    -webkit-animation: fadein 5s; /* Chrome, Safari, Opera */
+    animation: fadein 5s;
+}
+
+.fadein8Secs{
+    -webkit-animation: fadein 8s; /* Chrome, Safari, Opera */
+    animation: fadein 8s;
+}
+
+.error{
+    color: firebrick;
+    font-family: fontBold, serif;
+    font-size: 50px;
+}
+
+.welcome{
+    font-family: fontLight, serif;
+    font-size: 150px;
+}
+
+.welcomeSubTitle{
+    font-family: fontThin, serif;
+    font-size: 25px;
+}
+
 .city{
     font-family: fontLight, serif;
     font-size: 48px;
     margin: 0;
+    margin-top: 17px;
 }
 
 .country{
+    margin: 0;
     font-family: fontThin, serif;
-    font-weight:37px;
+    font-size:30px;
     text-align: right;
 }
 
@@ -79,26 +144,21 @@ a{
     display: inline-block;
     position: relative;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
 }
 
 .side{
     margin: 10px;
     display: inline-block;
     position: relative;
-}
-
-.sideVertAlign{
-    margin: 10px;
-    display: inline-block;
-    position: relative;
-    vertical-align:middle
+    vertical-align: middle;
 }
 
 .footer{
+    font-family: fontThin, serif;
     padding: 5px 0px 5px 0px;
     color: aliceblue;
     margin: 0;
+    margin-top: 0;
     bottom: 0;
     background: RGBA(0, 0, 0, .50); 
     width: 100%;
@@ -112,17 +172,20 @@ a{
     position: relative;
     -webkit-animation: myfirst 5s infinite; /* Chrome, Safari, Opera */
     animation: myfirst 5s infinite;
+    animation-direction: alternate;
     width: 200px;
 }
 
 .wind{
-    width: 46px;
-    vertical-align:middle
+    width: 40px;
+    vertical-align:middle;
 }
 
 .breakLine{
     height: 2px;
-    background: RGBA(0, 0, 0, .10);
+    background: RGBA(0, 0, 0, .30);
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .temp{
@@ -132,10 +195,25 @@ a{
     margin: 0;
 }
 
-.date{
+.celcius{
     margin: 0;
-    font-family: fontRegular;
+    padding: 0;
+    vertical-align: text-top;
+    font-size: 10px;
+    display: inline-block;
+}
+
+.tempMinMax{
+    font-family: fontSemiBold;
     font-size: 12px;
+    display: inline-block;
+}
+
+.date{
+    text-align: right;
+    margin: 0;
+    font-family: fontThin, serif;
+    font-size: 18px;
 }
 
 .sunriseSunsetDiv{
@@ -157,32 +235,85 @@ a{
 }
 
 /*http://www.w3schools.com/css/tryit.asp?filename=trycss3_box-shadow4*/
-.daysCard{
-    margin: 0;
-    padding: 5px;
+.dayCard{
+    width: 100%;
+    height: 100%;
     text-align: center;
+    background: RGBA(0, 0, 0, .35); 
+    display: inline-block;
+    color: white;
+    -webkit-backface-visibility: hidden ;
+    backface-visibility: hidden;
+    z-index: 1;
+    cursor: pointer;
+    position: relative;
 }
 
-.daysCard:hover{
+.flipped {
+  -webkit-transform: rotatex(-180deg);
+}
+
+.dayCard:hover{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.daysCard:click{
-    box-shadow: 0 8px 4px 0 rgba(0, 0, 0, 0.19), 0 20px 6px 0 rgba(0, 0, 0, 0.2);
-}
-
-.daysHeader{
-    background-color: #FFEB3B;
-    color: white;
-    padding: 5px;
-    font-family: fontBold;
-    font-size: 38px;
-    margin: 0;
-}
-
-.dayDate{
-    padding: 0;
-    border-style: solid;
-    border-width: 1px;
+.dayCardTemp{
     text-align: center;
+    font-family: fontSemiBold;
+    font-size: 30px;
+}
+
+.dayCardLogoSize{
+    width: 100%;;
+    vertical-align: middle;
+}
+
+.infoSun{
+    vertical-align: middle;
+}
+
+
+.flipped {
+    -webkit-transform: rotatex(-180deg);
+}
+
+.card {
+    -webkit-transform-style: preserve-3d;
+    -webkit-transition: 1.5s;
+}
+
+.front {
+    position: absolute;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.back {
+    background: RGBA(0, 0, 0, .65); 
+    -webkit-transform: rotatex(-180deg);
+    cursor: pointer;
+}
+
+.center {
+    text-align: center;
+}
+
+.backIcon {
+    vertical-align: middle;
+    width: 25px;
+}
+
+.backText {
+    font-family: fontThin;
+    display: inline-block;
+    font-size: 12px;
+}
+
+.noMargin {
+    margin: 0;
+    padding: 0;
+}
+
+.white {
+    background: RGBA(255, 255, 255, .30);
 }
